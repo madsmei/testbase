@@ -1,0 +1,8 @@
+security:
+  oauth2:
+    client:
+      client-id: appid
+      client-secret: secret
+      scope: all
+    resource: # 认证中心的check_token 接口地址
+      token-info-uri: http://127.0.0.1:8764/oauth/check_token
