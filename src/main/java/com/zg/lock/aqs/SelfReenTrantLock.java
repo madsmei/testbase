@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * @Description: 手写 独占锁。不支持 可重入
+ * @Description: 手写 独占锁。支持 可重入
  * 思路l:  请看 {@link SelfLock}
  *
  *  可重入 和 不可重入  的核心思想 就是对  state的操作。入多少次就减多少次，直到为0时才释放锁，

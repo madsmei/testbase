@@ -28,6 +28,16 @@ public class CallbaleTest {
         task.get();//渠道返回值
     }
 
+    public void demo1() throws ExecutionException, InterruptedException {
+        FutureTask<String> stringFutureTask = new FutureTask<>(() -> {
+            return "1.8的写法";
+        });
+
+        new Thread(stringFutureTask).start();
+
+        stringFutureTask.get();
+    }
+
     public static void main(String[] args) {
         System.out.println("");
     }

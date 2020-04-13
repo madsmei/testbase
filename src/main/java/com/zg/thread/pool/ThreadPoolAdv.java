@@ -8,7 +8,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  *类说明：自定义线程池中线程的创建方式
  */
 public class ThreadPoolAdv {
+
     static class Worker implements Runnable {
+
         private String taskName;
         private Random r = new Random();
 

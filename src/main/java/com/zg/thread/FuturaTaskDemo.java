@@ -9,12 +9,12 @@ import java.util.concurrent.*;
  * 浪费计算机资源，get()方法时阻塞的，
  * @param <V>
  */
-public class FuturaTaskTest<V> implements  Runnable, Future<V> {
+public class FuturaTaskDemo<V> implements  Runnable, Future<V> {
 
     private Callable<V> callable;//封装业务逻辑
     private V result = null;//执行结果
 
-    public FuturaTaskTest(Callable<V> callable){
+    public FuturaTaskDemo(Callable<V> callable){
         this.callable = callable;
     }
 

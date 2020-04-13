@@ -29,7 +29,6 @@ public class Sdsf implements Adsfd,ApplicationContextAware {
 
         bean.setName("aaaaa");
         bean.setAdress("vvvv");
-        
     }
 
     @Override
