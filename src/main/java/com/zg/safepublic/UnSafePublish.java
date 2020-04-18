@@ -1,5 +1,7 @@
 package com.zg.safepublic;
 
+import sun.misc.Unsafe;
+
 /**
  * 不安全的发布
  */
@@ -17,5 +19,6 @@ public class UnSafePublish {
         user.setAge(26);
 		System.out.println(user);
 		System.out.println(unSafePublish.getUser());
+
 	}
 }

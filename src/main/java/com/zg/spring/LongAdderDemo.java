@@ -8,6 +8,8 @@ import java.util.concurrent.atomic.LongAdder;
 
 /**
  * 类说明：LongAdder,原子类以及同步锁性能测试
+ *
+ * 高并发环境下 ，比AtomicLong的性能更高。他是采用分布式计算的思想，底层维护了  多个小数组，最后取值时  进行结果的sum（）操作。
  */
 public class LongAdderDemo {
     private static final int MAX_THREADS = 20;
