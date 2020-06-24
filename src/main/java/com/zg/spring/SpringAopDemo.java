@@ -4,6 +4,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 
 
 /******
@@ -18,8 +19,8 @@ public class SpringAopDemo {
      * execution 声明连接点
      */
     @Pointcut("execution(* com.abc.service..*.*(..))")
-    public void poinCut(){
-        System.out.println("=======实际业务代码========="+Thread.currentThread().getName());
+    public void poinCut() {
+        System.out.println("=======实际业务代码=========" + Thread.currentThread().getName());
 
     }
 
@@ -29,25 +30,25 @@ public class SpringAopDemo {
      * 比如说 开启事务
      */
     @Before("poinCut()")
-    public void before(JoinPoint joinPoint){
-        System.out.println("===========方法前调用======="+Thread.currentThread().getName());
+    public void before(JoinPoint joinPoint) {
+        System.out.println("===========方法前调用=======" + Thread.currentThread().getName());
     }
 
     /******
      * 后置通知
      * 可以额外配置一个returning属性，来指定一个参数名接收目标方法执行后的返回值
      */
-    @AfterReturning(value = "poinCut()",returning = "msg")
+    @AfterReturning(value = "poinCut()", returning = "msg")
     public void afterReturning(String msg) {
-        System.out.println("============后置通知============返回结果 : "+msg);
+        System.out.println("============后置通知============返回结果 : " + msg);
     }
 
     /******
      * 异常通知
      */
-    @AfterThrowing(value = "poinCut()" ,throwing="e")
+    @AfterThrowing(value = "poinCut()", throwing = "e")
     public void afterThrowing(Throwable e) {
-        System.out.println("=======异常通知==========错误信息: "+e.getMessage());
+        System.out.println("=======异常通知==========错误信息: " + e.getMessage());
     }
 
     /******
@@ -56,8 +57,8 @@ public class SpringAopDemo {
      * 比如说 提交事务
      */
     @After(value = "poinCut()")
-    public void after(JoinPoint joinPoint){
-        System.out.println("=============方法后调用==============="+Thread.currentThread().getName());
+    public void after(JoinPoint joinPoint) {
+        System.out.println("=============方法后调用===============" + Thread.currentThread().getName());
     }
 
 
@@ -68,13 +69,20 @@ public class SpringAopDemo {
     public void around(ProceedingJoinPoint joinPoint) {
         System.out.println("==========环绕通知==================");
 
+        //Spring的计时器
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
         String methodName = joinPoint.getSignature().getName();
         String className = joinPoint.getTarget().getClass().getName();
 
-        System.out.println("代理类名 "+className+" 的方法名-->"+methodName);
+        System.out.println("代理类名 " + className + " 的方法名-->" + methodName);
 
         //调用实际的业务代码
 //        joinPoint.proceed();
+
+        stopWatch.stop();
+        System.out.println("RPC-->" + methodName + "()方法执行时间：" + stopWatch.prettyPrint());
     }
 }
 
