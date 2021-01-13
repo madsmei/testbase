@@ -226,12 +226,12 @@ import java.util.stream.Stream;
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
  *
- * @since 1.5
- * @author Doug Lea
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
+ * @author Doug Lea
+ * @since 1.5
  */
-public class ConcurrentHashMap18<K,V> {
+public class ConcurrentHashMap18<K, V> {
 //        extends AbstractMap<K,V>
 //    implements ConcurrentMap<K,V>, Serializable {
 //    private static final long serialVersionUID = 7249069246763182397L;

@@ -17,14 +17,14 @@ public class SelfAtomicIntTest {
 
     public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < 7000; i++) {
-            new Thread(()->{
+            new Thread(() -> {
                 try {
                     countDownLatch.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
-                for (int k = 0; k <10 ; k++) {
+                for (int k = 0; k < 10; k++) {
                     atomicInt.increment();
                 }
             }).start();
@@ -33,7 +33,7 @@ public class SelfAtomicIntTest {
         }
 
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("最后执行结果"+atomicInt.getCount());
+        System.out.println("最后执行结果" + atomicInt.getCount());
     }
 
 }

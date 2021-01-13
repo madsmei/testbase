@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 public class GloabalExpectionHandler {
 
     @ExceptionHandler(value = Exception.class)
-    public ModelAndView defaultExperctionHandler(HttpServletRequest request,Exception e)
-        throws Exception{
+    public ModelAndView defaultExperctionHandler(HttpServletRequest request, Exception e)
+            throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("exmsg","这里是异常信息");
+        mav.addObject("exmsg", "这里是异常信息");
         mav.setViewName("madserror");//错误页面
 
         return mav;

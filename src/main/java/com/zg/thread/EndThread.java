@@ -24,7 +24,7 @@ public class EndThread {
 
             //如果收到结束通知 就退出循环
             while (!Thread.currentThread().isInterrupted()) {
-                System.out.println("一直快乐的线程 "+num.getAndIncrement());
+                System.out.println("一直快乐的线程 " + num.getAndIncrement());
             }
         }
     }

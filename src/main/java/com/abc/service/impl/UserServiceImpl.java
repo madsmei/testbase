@@ -1,7 +1,8 @@
-package com.abc.service;
+package com.abc.service.impl;
 
 import com.abc.dao.UserMapper;
 import com.abc.entity.User;
+import com.abc.service.UserService;
 import io.shardingsphere.transaction.annotation.ShardingTransactionType;
 import io.shardingsphere.transaction.api.TransactionType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
     //设置事务为shardingjdbc的XA方案,他默认的事务使用的是本地事务
     @ShardingTransactionType(TransactionType.XA)
     @Override
-    public void save(Long id,String name, int age) {
+    public void save(Long id, String name, int age) {
 
         User user = new User();
         user.setName(name);

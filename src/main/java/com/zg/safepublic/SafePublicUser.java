@@ -15,7 +15,7 @@ public class SafePublicUser {
     }
 
     /*线程安全的类*/
-    private static class SynUser extends UserVo{
+    private static class SynUser extends UserVo {
         private final UserVo userVo;
         private final Object lock = new Object();
 
@@ -25,14 +25,14 @@ public class SafePublicUser {
 
         @Override
         public int getAge() {
-            synchronized (lock){
+            synchronized (lock) {
                 return userVo.getAge();
             }
         }
 
         @Override
         public void setAge(int age) {
-            synchronized (lock){
+            synchronized (lock) {
                 userVo.setAge(age);
             }
         }

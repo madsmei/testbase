@@ -8,5 +8,5 @@ package com.abc.listener;
  **/
 public interface LoginService {
 
-    void Login(String name,String pwd);
+    void Login(String name, String pwd);
 }

@@ -1,7 +1,7 @@
 package com.zg.lock;
 
 /**
- *类说明：演示死锁的产生
+ * 类说明：演示死锁的产生
  */
 public class NormalDeadLock {
 
@@ -11,11 +11,11 @@ public class NormalDeadLock {
     //第一个拿锁的方法
     private static void peterDo() throws InterruptedException {
         String threadName = Thread.currentThread().getName();
-        synchronized (No13){
-            System.out.println(threadName+" get NO13");
+        synchronized (No13) {
+            System.out.println(threadName + " get NO13");
             Thread.sleep(100);
-            synchronized (No14){
-                System.out.println(threadName+" get NO14");
+            synchronized (No14) {
+                System.out.println(threadName + " get NO14");
             }
         }
     }
@@ -23,17 +23,17 @@ public class NormalDeadLock {
     //第二个拿锁的方法
     private static void kingDo() throws InterruptedException {
         String threadName = Thread.currentThread().getName();
-        synchronized (No14){
-            System.out.println(threadName+" get NO13");
+        synchronized (No14) {
+            System.out.println(threadName + " get NO13");
             Thread.sleep(100);
-            synchronized (No13){
-                System.out.println(threadName+" get NO14");
+            synchronized (No13) {
+                System.out.println(threadName + " get NO14");
             }
         }
     }
 
     //子线程，代表peter老师
-    private static class Peter extends Thread{
+    private static class Peter extends Thread {
 
         private String name;
 

@@ -28,10 +28,10 @@ public class HelloCtroller {
      * @return
      */
     @RequestMapping(value = "/hellohtml")
-    public String hellohtml(ModelMap map){
+    public String hellohtml(ModelMap map) {
 
 
-        map.addAttribute("name","mads");
+        map.addAttribute("name", "mads");
         //默认找 templaates/hello.html
         return "hello";
     }
@@ -42,8 +42,8 @@ public class HelloCtroller {
      * @throws Exception
      */
     @RequestMapping(value = "/exceptiontest")
-    public String exceptiontest() throws  Exception{
-        throw  new Exception("11111111");
+    public String exceptiontest() throws Exception {
+        throw new Exception("11111111");
         //默认找 templaates/hello.html
     }
 

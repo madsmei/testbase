@@ -12,25 +12,24 @@ public class SingleContainer {
     private SingleContainer() {
     }
 
-    private static ConcurrentHashMap<String,Object> ioc = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String, Object> ioc = new ConcurrentHashMap<>();
 
     public static Object getInstance(String classname) {
         synchronized (ioc) {
-            if(!ioc.containsKey(classname)) {
+            if (!ioc.containsKey(classname)) {
                 Object object = null;
                 try {
                     object = Class.forName(classname).newInstance();
                     ioc.put(classname, object);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 return object;
-            }else {
+            } else {
                 return ioc.get(classname);
             }
         }
     }
-
 
 
 }

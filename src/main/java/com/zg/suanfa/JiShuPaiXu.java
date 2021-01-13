@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @Description: 基数排序算法
- *
+ * <p>
  * 将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。然后，从最低位
  * 开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后,数列就变成一个有序序列。
  * @Date 2020/3/9
@@ -13,7 +13,7 @@ import java.util.List;
  * @Author Mads
  **/
 public class JiShuPaiXu {
-    private static  int[] a ={49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 5, 4, 62, 99, 98, 54, 101, 56, 17, 18, 23, 34, 15, 35, 25, 53, 51};
+    private static int[] a = {49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 5, 4, 62, 99, 98, 54, 101, 56, 17, 18, 23, 34, 15, 35, 25, 53, 51};
 
     public static void main(String[] args) {
         sort(a);
@@ -46,7 +46,7 @@ public class JiShuPaiXu {
         }
 
         //建立10 个队列;
-        List<ArrayList> queue = new ArrayList<ArrayList> ();
+        List<ArrayList> queue = new ArrayList<ArrayList>();
 
         for (int i = 0; i < 10; i++) {
 

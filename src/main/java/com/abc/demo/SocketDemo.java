@@ -14,12 +14,12 @@ public class SocketDemo {
 
     public static void main(String[] args) {
 
-        new Thread(()->{
+        new Thread(() -> {
             SocketServer server = new SocketDemo().new SocketServer();
             server.startServerScoket();
         }).start();
 
-        new Thread(()->{
+        new Thread(() -> {
             SocketClient client = new SocketDemo().new SocketClient();
             client.startClint();
         }).start();
@@ -29,12 +29,12 @@ public class SocketDemo {
     /******
      * SOCKET 服务端
      */
-     class SocketServer {
+    class SocketServer {
 
-        private  int count = 0;
+        private int count = 0;
 
         //开始服务端监听
-        public  void startServerScoket() {
+        public void startServerScoket() {
             ServerSocket server = null;
             Socket clint = null;
             try {
@@ -51,9 +51,9 @@ public class SocketDemo {
 
                     byte[] buff = new byte[1024];
                     int len = inputStream.read(buff);
-                    if(len > 0){
-                        String msg = new String(buff,0,len);
-                        System.out.println("server收到信息："+msg);
+                    if (len > 0) {
+                        String msg = new String(buff, 0, len);
+                        System.out.println("server收到信息：" + msg);
                         OutputStream outputStream = clint.getOutputStream();
                         String res = "服务端返回包---哈哈哈---";
                         outputStream.write(res.getBytes());
@@ -73,10 +73,10 @@ public class SocketDemo {
     /******
      * socket 客户端
      */
-     class SocketClient {
+    class SocketClient {
 
-         //开启客户端访问
-        public  void startClint() {
+        //开启客户端访问
+        public void startClint() {
 
             try {
                 Socket client = new Socket("localhost", 8080);
@@ -89,10 +89,10 @@ public class SocketDemo {
 
                 byte[] buff = new byte[1024];
                 int len = inputStream.read(buff);
-                if(len > 0){
-                    String msg = new String(buff,0,len);
+                if (len > 0) {
+                    String msg = new String(buff, 0, len);
 
-                    System.out.println("收到的包:"+msg);
+                    System.out.println("收到的包:" + msg);
                 }
                 inputStream.close();
                 outputStream.close();

@@ -16,8 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-
- *类说明：
+ * 类说明：
  */
 @Configuration
 public class RabbitConfig {
@@ -46,7 +45,7 @@ public class RabbitConfig {
     public ConnectionFactory connectionFactory() {
 
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setAddresses(addresses+":"+port);
+        connectionFactory.setAddresses(addresses + ":" + port);
         connectionFactory.setUsername(username);
         connectionFactory.setPassword(password);
         connectionFactory.setVirtualHost(virtualHost);
@@ -55,9 +54,10 @@ public class RabbitConfig {
 
         return connectionFactory;
     }
+
     //TODO rabbitAdmin类封装对RabbitMQ的管理操作
     @Bean
-    public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory){
+    public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
         return new RabbitAdmin(connectionFactory);
     }
 
@@ -82,11 +82,13 @@ public class RabbitConfig {
     public TopicExchange Topicexchange() {
         return new TopicExchange("TopicExchange");
     }
+
     //TODO 申明交换器(Direct交换器)
     @Bean
     public DirectExchange Directexchange() {
         return new DirectExchange("DirectExchange");
     }
+
     //TODO 申明交换器(Fanout交换器)
     @Bean
     public FanoutExchange Fanoutexchange() {
@@ -104,15 +106,17 @@ public class RabbitConfig {
     @Bean
     public Queue queue1() {
         Map<String, Object> arguments = new HashMap<>();
-        arguments.put("x-dead-letter-exchange","exchange-dlx");
-        arguments.put("x-dead-letter-routing-key","*");
-        return new Queue("queue1",true,false,false,arguments);
+        arguments.put("x-dead-letter-exchange", "exchange-dlx");
+        arguments.put("x-dead-letter-routing-key", "*");
+        return new Queue("queue1", true, false, false, arguments);
         //return new Queue("queue1");
     }
+
     @Bean
     public Queue queue2() {
         return new Queue("queue2");
     }
+
     @Bean
     public Queue queue3() {
         return new Queue("queue3");
@@ -132,9 +136,9 @@ public class RabbitConfig {
         //设置队列的最大消息数
         arguments.put("x-max-length", 5);
         // 绑定该队列到私信交换机
-        arguments.put("x-dead-letter-exchange","exchange-dlx");
-        arguments.put("x-dead-letter-routing-key","*");
-        return new Queue("queue_ttl",true,false,false,arguments);
+        arguments.put("x-dead-letter-exchange", "exchange-dlx");
+        arguments.put("x-dead-letter-routing-key", "*");
+        return new Queue("queue_ttl", true, false, false, arguments);
     }
 
 
@@ -170,12 +174,14 @@ public class RabbitConfig {
                 .bind(queue3())
                 .to(Fanoutexchange());
     }
+
     @Bean
     public Binding bindingFanoutExchange2() {
         return BindingBuilder
                 .bind(queue4())
                 .to(Fanoutexchange());
     }
+
     //消息过期队列绑定
     @Bean
     public Binding bindingFanoutExchange3() {
@@ -193,12 +199,10 @@ public class RabbitConfig {
     }
 
 
-
-
     //===============生产者发送确认==========
     @Bean
-    public RabbitTemplate.ConfirmCallback confirmCallback(){
-        return new RabbitTemplate.ConfirmCallback(){
+    public RabbitTemplate.ConfirmCallback confirmCallback() {
+        return new RabbitTemplate.ConfirmCallback() {
 
             @Override
             public void confirm(CorrelationData correlationData,
@@ -207,16 +211,16 @@ public class RabbitConfig {
                     System.out.println("发送者确认发送给mq成功");
                 } else {
                     //处理失败的消息
-                    System.out.println("发送者发送给mq失败,考虑重发:"+cause);
+                    System.out.println("发送者发送给mq失败,考虑重发:" + cause);
                 }
             }
         };
     }
 
-        //===============失败通知==========
+    //===============失败通知==========
     @Bean
-    public RabbitTemplate.ReturnCallback returnCallback(){
-        return new RabbitTemplate.ReturnCallback(){
+    public RabbitTemplate.ReturnCallback returnCallback() {
+        return new RabbitTemplate.ReturnCallback() {
 
             @Override
             public void returnedMessage(Message message,
@@ -225,14 +229,15 @@ public class RabbitConfig {
                                         String exchange,
                                         String routingKey) {
                 System.out.println("无法路由的消息，需要考虑另外处理。");
-                System.out.println("Returned replyText："+replyText);
-                System.out.println("Returned exchange："+exchange);
-                System.out.println("Returned routingKey："+routingKey);
-                String msgJson  = new String(message.getBody());
-                System.out.println("Returned Message："+msgJson);
+                System.out.println("Returned replyText：" + replyText);
+                System.out.println("Returned exchange：" + exchange);
+                System.out.println("Returned routingKey：" + routingKey);
+                String msgJson = new String(message.getBody());
+                System.out.println("Returned Message：" + msgJson);
             }
         };
     }
+
     //===============消费者确认==========
     @Bean
     public SimpleMessageListenerContainer messageContainer() {
@@ -246,8 +251,6 @@ public class RabbitConfig {
         container.setMessageListener(receiver);
         return container;
     }
-
-
 
 
 }

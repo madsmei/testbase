@@ -31,7 +31,7 @@ public class StringAppendDemo {
 
         //第四种，是第三种源码实现方式
         StringJoiner joiner = new StringJoiner(delimiter);
-        for (CharSequence cs: elements) {
+        for (CharSequence cs : elements) {
             joiner.add(cs);
         }
 

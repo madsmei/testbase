@@ -4,7 +4,7 @@ import com.zg.util.ArrayUtil;
 
 /**
  * @Description: 插入排序算法
- *
+ * <p>
  * 通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应的位置并插入。
  * 插入排序非常类似于整扑克牌。在开始摸牌时，左手是空的，牌面朝下放在桌上。接着，一次从
  * 桌上摸起一张牌，并将它插入到左手一把牌中的正确位置上。为了找到这张牌的正确位置，要将
@@ -18,40 +18,40 @@ import com.zg.util.ArrayUtil;
 public class ChaRu {
     public static int[] sort(int arr[]) {
 
-        for(int i =1; i<arr.length;i++) {
+        for (int i = 1; i < arr.length; i++) {
 
             //插入的数
             int insertVal = arr[i];
 
             //被插入的位置(准备和前一个数比较)
-            int index = i-1;
+            int index = i - 1;
 
             //如果插入的数比被插入的数小
-            while(index >= 0 && insertVal < arr[index]) {
+            while (index >= 0 && insertVal < arr[index]) {
 
                 //将把arr[index] 向后移动
-                arr[index+1] = arr[index];
+                arr[index + 1] = arr[index];
 
                 //让index 向前移动
                 index--;
             }
 
             //把插入的数放入合适位置
-            arr[index+1] = insertVal;
+            arr[index + 1] = insertVal;
         }
         return arr;
     }
 
     public static void main(String[] args) {
-            int[] array = ArrayUtil.randomArray(1, 100, 12);
+        int[] array = ArrayUtil.randomArray(1, 100, 12);
 
-            for (int i = 0; i <array.length ; i++) {
-                System.out.println("--->:"+array[i]);
-            }
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("--->:" + array[i]);
+        }
 
-            int[] b = sort(array);
-            for (int i = 0; i <b.length ; i++) {
-                System.out.println("====>:"+b[i]);
-            }
+        int[] b = sort(array);
+        for (int i = 0; i < b.length; i++) {
+            System.out.println("====>:" + b[i]);
+        }
     }
 }

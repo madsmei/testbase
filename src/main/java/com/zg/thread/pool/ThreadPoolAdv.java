@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- *类说明：自定义线程池中线程的创建方式
+ * 类说明：自定义线程池中线程的创建方式
  */
 public class ThreadPoolAdv {
 
@@ -14,7 +14,7 @@ public class ThreadPoolAdv {
         private String taskName;
         private Random r = new Random();
 
-        public Worker(String taskName){
+        public Worker(String taskName) {
             this.taskName = taskName;
         }
 
@@ -23,9 +23,9 @@ public class ThreadPoolAdv {
         }
 
         @Override
-        public void run(){
+        public void run() {
             System.out.println(Thread.currentThread().getName()
-            		+" process the task : " + taskName);
+                    + " process the task : " + taskName);
             try {
                 TimeUnit.MILLISECONDS.sleep(ThreadLocalRandom.current().nextInt(1, 500));
             } catch (InterruptedException e) {
@@ -35,15 +35,15 @@ public class ThreadPoolAdv {
     }
 
     /*自定义线程工厂*/
-    private static class MyThreadFactory implements ThreadFactory{
+    private static class MyThreadFactory implements ThreadFactory {
 
         private AtomicInteger count = new AtomicInteger(0);
 
         @Override
         public Thread newThread(Runnable r) {
-            Thread t = new Thread(r,"Mark_"+count.getAndIncrement());
+            Thread t = new Thread(r, "Mark_" + count.getAndIncrement());
             t.setDaemon(true);
-            System.out.println("create "+t);
+            System.out.println("create " + t);
             return t;
         }
     }

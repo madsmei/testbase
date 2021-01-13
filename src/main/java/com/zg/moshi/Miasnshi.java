@@ -17,19 +17,19 @@ public class Miasnshi {
         String d = "D";
 //        open(c,a, b,d);
         open1(a.toString(), b.toString());
-        System.out.println(a+" "+b+" "+c+" "+d);
+        System.out.println(a + " " + b + " " + c + " " + d);
 
         dowhile();
         complicatedexpression_r();
 
-        System.out.println("计算结果："+foo(5));
+        System.out.println("计算结果：" + foo(5));
     }
 
-   static int foo(int n)  {
+    static int foo(int n) {
 
-        if(n<2)return n;
-        int a = foo(n-1)+foo(n-2);
-        System.out.println("----a:"+a);
+        if (n < 2) return n;
+        int a = foo(n - 1) + foo(n - 2);
+        System.out.println("----a:" + a);
         return a;
     }
 
@@ -37,7 +37,7 @@ public class Miasnshi {
      * 这个方法看似是对 ++i和i++ 的知识。其实是 do while的用法的检验。
      */
     static void dowhile() {
-        int x=0;
+        int x = 0;
         int y = 10;
         do {
             y--;
@@ -49,10 +49,10 @@ public class Miasnshi {
     /*****
      * 考察 && 和& 的区别。&&具有短路功能，如果左侧为false,也就不去后面比较了，所以这里 后面的判断再长 也没用，
      */
-    static  void complicatedexpression_r(){
-        int x=20,y=30;
+    static void complicatedexpression_r() {
+        int x = 20, y = 30;
         boolean j;
-        j=x>50&&y>60||x>50&&y<-60||x<-50&&y>60||x<-50&&y<-60;
+        j = x > 50 && y > 60 || x > 50 && y < -60 || x < -50 && y > 60 || x < -50 && y < -60;
         System.out.println(j);
     }
 
@@ -67,15 +67,15 @@ public class Miasnshi {
      * @param b
      * @param d
      */
-    private static void open(int c,StringBuffer a,StringBuffer b,String d) {
+    private static void open(int c, StringBuffer a, StringBuffer b, String d) {
         a.append(b);
         b = a;
         c = 666;
         d = "dddd";
     }
 
-    private static void open1(String a,String b) {
-        a = a+b;
+    private static void open1(String a, String b) {
+        a = a + b;
         b = a;
     }
 }

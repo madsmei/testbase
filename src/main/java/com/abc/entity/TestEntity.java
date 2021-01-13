@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TestEntity {
-    private String name ="bbbb";
-    private Integer age ;
-    private String adress ;
+    private String name = "bbbb";
+    private Integer age;
+    private String adress;
 
     @Override
     public String toString() {

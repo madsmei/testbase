@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
     @Bean
-    public Docket createRestApi(){
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
@@ -30,7 +30,7 @@ public class SwaggerConfig {
      * Api 页面的基本信息
      * @return
      */
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("集成Swagger2构建RestApi")
                 .description("这里应该是详细的说明信心，但是不想写了")
                 .termsOfServiceUrl("https://www.baidu.com")

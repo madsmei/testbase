@@ -20,12 +20,14 @@ public class MadsHouseDecorate2016 extends MadsHouseDecorate {
     public void addGoods() {
         System.out.println("2016年买了沙发");
     }
+
     @Override
     public void people() {
         //2013年的家庭成员还在
         super.people();
 
-        chirlden();;
+        chirlden();
+        ;
     }
 
     @Override

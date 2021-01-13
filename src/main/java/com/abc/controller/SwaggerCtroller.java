@@ -24,14 +24,14 @@ public class SwaggerCtroller {
     private RestTemplate restTemplate;
 
 
-    @ApiOperation(value="获取用户信息",notes = "根据用户id获取用户基本信息")
-    @ApiImplicitParam(name = "id",value = "用户id" ,required = true,dataType = "String")
-    @RequestMapping(value = "/firstApi/{id}",method = RequestMethod.GET)
-    public Map<String,Object> hellohtml(@PathVariable String id){
+    @ApiOperation(value = "获取用户信息", notes = "根据用户id获取用户基本信息")
+    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "String")
+    @RequestMapping(value = "/firstApi/{id}", method = RequestMethod.GET)
+    public Map<String, Object> hellohtml(@PathVariable String id) {
 
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("name","mads");
-        map.put("uid",id);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("name", "mads");
+        map.put("uid", id);
 
         return map;
     }

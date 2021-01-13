@@ -19,7 +19,7 @@ public class NewThread {
         }
     }
 
-    private static  class  UseRunnable implements Runnable {
+    private static class UseRunnable implements Runnable {
         @Override
         public void run() {
             System.out.println("i am useRannable");

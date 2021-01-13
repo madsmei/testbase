@@ -3,10 +3,7 @@ package com.abc.listener;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * @Description: 事件
- * @Date 2020/3/8
- * @Version V1.0
- * @Author Mads
+ *  事件
  **/
 
 public class EventDemo extends ApplicationEvent {
@@ -22,6 +19,6 @@ public class EventDemo extends ApplicationEvent {
     }
 
     public String print() {
-        return "DemoEvent-->"+text;
+        return "DemoEvent-->" + text;
     }
 }

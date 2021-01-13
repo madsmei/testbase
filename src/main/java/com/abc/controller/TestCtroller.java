@@ -22,7 +22,7 @@ public class TestCtroller {
      */
     @RequestMapping(value = "/listenerTest")
     public String listenerTest() {
-        loginService.Login("mads","123456");
+        loginService.Login("mads", "123456");
 
         return "ok";
     }

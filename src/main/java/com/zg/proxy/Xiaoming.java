@@ -5,6 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Xiaoming implements People {
 
     private ReentrantLock lock = new ReentrantLock();
+
     @Override
     public String zhaoduixiang() {
 

@@ -9,9 +9,8 @@ import java.util.concurrent.locks.Lock;
 /**
  * @Description: 手写 独占锁。支持 可重入
  * 思路l:  请看 {@link SelfLock}
- *
- *  可重入 和 不可重入  的核心思想 就是对  state的操作。入多少次就减多少次，直到为0时才释放锁，
- *
+ * <p>
+ * 可重入 和 不可重入  的核心思想 就是对  state的操作。入多少次就减多少次，直到为0时才释放锁，
  * @Date 2020/2/16
  * @Version V1.0
  * @Author Mads
@@ -32,11 +31,11 @@ public class SelfReenTrantLock implements Lock {
         protected boolean tryAcquire(int arg) {
 
             //如果设置成功 说明抢锁成功，就把当前线程 保存下来
-            if(compareAndSetState(0, 1)) {
+            if (compareAndSetState(0, 1)) {
                 setExclusiveOwnerThread(Thread.currentThread());
 
                 return true;
-            }else if(getExclusiveOwnerThread() == Thread.currentThread()) {//支持可重入
+            } else if (getExclusiveOwnerThread() == Thread.currentThread()) {//支持可重入
                 setState(getState() + 1);
                 return true;
             }
@@ -51,14 +50,14 @@ public class SelfReenTrantLock implements Lock {
         @Override
         protected boolean tryRelease(int arg) {
 
-            if(getExclusiveOwnerThread() != Thread.currentThread()) {
+            if (getExclusiveOwnerThread() != Thread.currentThread()) {
                 throw new IllegalMonitorStateException();
             }
-            if(getState() == 0) {
+            if (getState() == 0) {
                 throw new IllegalMonitorStateException();
             }
             setState(getState() - 1);
-            if(getState() == 0){
+            if (getState() == 0) {
                 setExclusiveOwnerThread(null);
             }
 
@@ -74,7 +73,9 @@ public class SelfReenTrantLock implements Lock {
             return getState() > 0;
         }
 
-        Condition newCondtion(){return new ConditionObject();}
+        Condition newCondtion() {
+            return new ConditionObject();
+        }
     }
 
     private static Sync sync = new Sync();

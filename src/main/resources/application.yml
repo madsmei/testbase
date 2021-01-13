@@ -1,20 +1,20 @@
-security:
-  oauth2:
-    client:
-      client-id: appid
-      client-secret: secret
-      scope: all
-    resource: # 认证中心的check_token 接口地址
-      token-info-uri: http://127.0.0.1:8764/oauth/check_token
-spring:
-  kafka:
-    # 消费者
-    consumer:
-      group-id: foo
-      auto-offset-reset: earliest
-      bootstrap-servers: localhost:9092
-    # 生产者
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#security:
+#  oauth2:
+#    client:
+#      client-id: appid
+#      client-secret: secret
+#      scope: all
+#    resource: # 认证中心的check_token 接口地址
+#      token-info-uri: http://127.0.0.1:8764/oauth/check_token
+#spring:
+#  kafka:
+#    # 消费者
+#    consumer:
+#      group-id: foo
+#      auto-offset-reset: earliest
+#      bootstrap-servers: localhost:9092
+#    # 生产者
+#    producer:
+#      bootstrap-servers: localhost:9092
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer

@@ -18,15 +18,14 @@ public class ShardingCtroller {
 
     @RequestMapping(value = "/add")
     @ResponseBody
-    public String add()  {
+    public String add() {
 
         for (int i = 1; i <= 50; i++) {
-            userService.save((long)i,"潇潇"+i,i);
-            System.out.println("添加完成---"+i);
+            userService.save((long) i, "潇潇" + i, i);
+            System.out.println("添加完成---" + i);
         }
         return "ok";
     }
-
 
 
 }

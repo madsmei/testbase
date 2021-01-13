@@ -1,5 +1,7 @@
 package com.abc.demo;
 
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,26 +21,62 @@ import java.net.Socket;
  * shuaige
  *
  * ps:注意每个回车代表了结束符  \r\n
- * @author  mads
+ * @author mads
  */
 public class JedisDemo {
     private Socket jedis = null;
 
-    private String CTRL = "\r\n";
+    private String CTRL = "\r\n";//结束语
+    private String FUNCTION_XING = "*";//数组
+    private String FUNCTION_DAOLE = "$";//字符 Bulk Strings 用于表示长度最大为512MB的单个二进制安全字符串。
+    private String FUNCTION_NUM = ":";//数字
+    private String FUNCTION_ERROR = "-";//错误回复
+    private String FUNCTION_STATUS = "+";//状态回复
+
     private String API_SET = "SET";
-    private String FUNCTION_XING = "*";
-    private String FUNCTION_DAOLE = "$";
+    private String API_GET = "GET";
+    private String API_INCRBY = "INCRBY";//
 
 
     public static void main(String[] args) throws IOException {
         JedisDemo jedis = new JedisDemo();
         jedis.inintJedis();
-        jedis.setString("ceshimads", "huichegngognma");
+//        jedis.setString("mads", "googboy");
+//        jedis.getString("mads");
+        jedis.incrby("madsnum", "1");
     }
 
     public void inintJedis() {
         try {
-            jedis = new Socket("redis.catpaw.local", 6379);
+            jedis = new Socket("localhost", 6379);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*******
+     * 模拟 Redis 的GET 命令
+     * @param key
+     */
+    public void incrby(String key, String inc) throws IOException {
+
+        //这里使用了 阿里开发规范里的提到的  try-with-resource的流处理方式，优雅的关闭流
+        try (OutputStream out = jedis.getOutputStream()) {
+            sendCommand(out, API_INCRBY, key.getBytes(), inc.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*******
+     * 模拟 Redis 的GET 命令
+     * @param key
+     */
+    public void getString(String key) throws IOException {
+
+        //这里使用了 阿里开发规范里的提到的  try-with-resource的流处理方式，优雅的关闭流
+        try (OutputStream out = jedis.getOutputStream()) {
+            sendCommand(out, API_GET, key.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,37 +87,16 @@ public class JedisDemo {
      * @param key
      * @param value
      */
-    public void setString(String key,String value) throws IOException {
+    public void setString(String key, String value) throws IOException {
 
         //这里使用了 阿里开发规范里的提到的  try-with-resource的流处理方式，优雅的关闭流
-        try (OutputStream out = jedis.getOutputStream()){
-            sendCommand(out, API_SET, key.getBytes(),value.getBytes());
+        try (OutputStream out = jedis.getOutputStream()) {
+            sendCommand(out, API_SET, key.getBytes(), value.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        byte[] xing_byte = "*".getBytes();
-//        byte[] daole_byte = "$".getBytes();
-//
-//        //*3
-//        out.write(xing_byte);
-//        out.write(mingling.length + 1);
-//
-//        //$3
-//        out.write(daole_byte);
-//        out.write(API_SET.getBytes().length);
-//        out.write(API_SET.getBytes());
-//        out.write(CTRL.getBytes());
-//
-//        //$4mads$7shuaige
-//        for (String v:mingling) {
-//            out.write(daole_byte);
-//            out.write(v.getBytes().length);
-//            out.write(v.getBytes());
-//            out.write(CTRL.getBytes());
-//        }getBytes
-
     }
+
 
     /******
      *  转义成resp 协议 并执行
@@ -88,7 +105,7 @@ public class JedisDemo {
      * @param args
      * @throws IOException
      */
-    private  void sendCommand(OutputStream out,String command ,byte[] ... args) throws IOException {
+    private void sendCommand(OutputStream out, String command, byte[]... args) throws IOException {
         //比如  key ==mads   value== shuaige
 
         //在确定的字符串个数的情况下传入大小。避免了后续的扩容操作，提升效率
@@ -102,23 +119,23 @@ public class JedisDemo {
         ss.append(command).append(CTRL);
 
         //$4mads$7shuaige
-        for (byte[] arg:args) {
+        for (byte[] arg : args) {
             ss.append(FUNCTION_DAOLE).append(arg.length).append(CTRL);
 
             ss.append(new String(arg)).append(CTRL);
         }
-        System.out.println("拼装成的RESP协议串->:"+ss);
+        System.out.println("自己客户端拼装成的RESP协议串->:" + ss);
         out.write(ss.toString().getBytes());
         out.flush();
 
-        try (InputStream inputStream = jedis.getInputStream()){
+        try (InputStream inputStream = jedis.getInputStream()) {
 
             byte[] buff = new byte[1024];
             int len = inputStream.read(buff);
-            if(len > 0){
-                String msg = new String(buff,0,len);
+            if (len > 0) {
+                String msg = new String(buff, 0, len);
 
-                System.out.println("jedis客户端收到Redis服务端返回的数据:"+msg);
+                System.out.println("自己客户端收到Redis服务端返回的数据:" + msg);
             }
         } catch (IOException e) {
             e.printStackTrace();

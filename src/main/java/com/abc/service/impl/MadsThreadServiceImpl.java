@@ -1,4 +1,6 @@
-package com.abc.service;
+package com.abc.service.impl;
+
+import com.abc.service.MadsService;
 
 import java.util.concurrent.*;
 
@@ -7,7 +9,8 @@ import java.util.concurrent.*;
  */
 public class MadsThreadServiceImpl implements MadsService {
     @Override
-    public void hello() {}
+    public void hello() {
+    }
 
     /*******
      * 多进程来执行远程接口拼装必要信息
@@ -20,13 +23,13 @@ public class MadsThreadServiceImpl implements MadsService {
     public void byby() throws ExecutionException, InterruptedException {
 
         //基本信息
-        FutureTask<String> uinfo = new FutureTask<String>(()->{
+        FutureTask<String> uinfo = new FutureTask<String>(() -> {
             System.out.println("这里模拟uinfo调用其他API接口");
             return "user信息的结构";
         });
 
         //订单信息
-        FutureTask<String> order = new FutureTask<String>(()->{
+        FutureTask<String> order = new FutureTask<String>(() -> {
 
             System.out.println("这里模拟order调用其他API接口");
 
@@ -40,7 +43,7 @@ public class MadsThreadServiceImpl implements MadsService {
         executorService.submit(uinfo);
         executorService.submit(order);
 
-        System.out.println("返回信息："+uinfo.get()+" "+order.get());
+        System.out.println("返回信息：" + uinfo.get() + " " + order.get());
 
         //使用这个线程池。一定要调用此方法。不然会一直在JVM占用。造成慢慢的吧老年代的空间消耗完最后OOM
         //这里可以吧此方法注释掉，观察一下。其实此时 方法执行完以后 JVM其实并没有回收方法。
@@ -51,7 +54,7 @@ public class MadsThreadServiceImpl implements MadsService {
         //呼叫总台可以关机
         executorService.shutdown();
         //总台：10秒后关机
-        if(!executorService.awaitTermination(10, TimeUnit.SECONDS)){
+        if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
             //总台：执行关机
             executorService.shutdownNow();
         }

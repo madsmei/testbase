@@ -22,9 +22,7 @@ public class AsddsCtroller {
 
 
     @RequestMapping(value = "/hello1")
-    public String hellohtml()  {
-
-
+    public String hellohtml() {
 
 
         adsfd.aaaaaa();
@@ -34,7 +32,6 @@ public class AsddsCtroller {
 
         return "k";
     }
-
 
 
 }

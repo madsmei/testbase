@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
  * @Author Mads
  **/
 @Service
-public class EventSourceDemo  implements LoginService,ApplicationContextAware {
+public class EventSourceDemo implements LoginService, ApplicationContextAware {
 
     private ApplicationContext context;
 
     @Override
-    public void Login(String name,String pwd) {
+    public void Login(String name, String pwd) {
 
         //这里 为什么会阻塞后面的 ，待确认，，，，
         context.publishEvent(new EventDemo(this, "登陆成功的监听"));

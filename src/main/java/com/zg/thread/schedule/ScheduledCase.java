@@ -4,8 +4,8 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- *定时任务 线程池
- *类说明：演示ScheduledThreadPoolExecutor的用法
+ * 定时任务 线程池
+ * 类说明：演示ScheduledThreadPoolExecutor的用法
  * ScheduledThreadPoolExecutor
  * 使用工厂类Executors来创建。Executors可以创建2种类型的ScheduledThreadPoolExecutor，如下。
  * •ScheduledThreadPoolExecutor。包含若干个线程的ScheduledThreadPoolExecutor。
@@ -15,16 +15,16 @@ import java.util.concurrent.TimeUnit;
  * 提交定时任务
  * public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit)
  * //向定时任务线程池提交一个延时Runnable任务（仅执行一次）
- *
+ * <p>
  * public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit);
  * //向定时任务线程池提交一个延时的Callable任务（仅执行一次）
- *
+ * <p>
  * public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay,     long period, TimeUnit unit)
  * //向定时任务线程池提交一个固定时间间隔执行的任务
- *
+ * <p>
  * public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay,  long delay, TimeUnit unit);
  * //向定时任务线程池提交一个固定延时间隔执行的任务
- *
+ * <p>
  * 固定时间间隔的任务不论每次任务花费多少时间，下次任务开始执行时间从理论上讲是确定的，当然执行任务的时间不能超过执行周期。
  * 固定延时间隔的任务是指每次执行完任务以后都延时一个固定的时间。由于操作系统调度以及每次任务执行的语句可能不同，所以每次任务执行所花费的时间是不确定的，也就导致了每次任务的执行周期存在一定的波动。
  * 定时任务超时问题
@@ -39,8 +39,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class ScheduledCase {
     public static void main(String[] args) {
-    	
-    	ScheduledThreadPoolExecutor schedule
+
+        ScheduledThreadPoolExecutor schedule
                 = new ScheduledThreadPoolExecutor(1);
 
         //延时Runnable任务（仅执行一次）

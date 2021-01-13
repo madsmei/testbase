@@ -10,7 +10,7 @@ public class ThreadGroupDemo {
 
         ThreadGroup group = new ThreadGroup("group1");
         Thread thread = new Thread(group, () -> {
-            while(true) {
+            while (true) {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {

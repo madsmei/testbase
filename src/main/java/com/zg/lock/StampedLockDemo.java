@@ -7,19 +7,21 @@ import java.util.concurrent.locks.StampedLock;
  */
 public class StampedLockDemo {
     //一个点的x，y坐标
-    private double x,y;
-    /**Stamped类似一个时间戳的作用，每次写的时候对其+1来改变被操作对象的Stamped值
-     * 这样其它线程读的时候发现目标对象的Stamped改变，则执行重读*/
+    private double x, y;
+    /**
+     * Stamped类似一个时间戳的作用，每次写的时候对其+1来改变被操作对象的Stamped值
+     * 这样其它线程读的时候发现目标对象的Stamped改变，则执行重读
+     */
     private final StampedLock sl = new StampedLock();
 
     //【写锁(排它锁)】
-    void move(double deltaX,double deltaY) {// an exclusively locked method
+    void move(double deltaX, double deltaY) {// an exclusively locked method
         /**stampedLock调用writeLock和unlockWrite时候都会导致stampedLock的stamp值的变化
          * 即每次+1，直到加到最大值，然后从0重新开始*/
-        long stamp =sl.writeLock(); //写锁
+        long stamp = sl.writeLock(); //写锁
         try {
-            x +=deltaX;
-            y +=deltaY;
+            x += deltaX;
+            y += deltaY;
         } finally {
             sl.unlockWrite(stamp);//释放写锁
         }
@@ -44,12 +46,12 @@ public class StampedLockDemo {
             try {
                 currentX = x;
                 currentY = y;
-            }finally{
+            } finally {
                 sl.unlockRead(stamp);//释放读锁
             }
         }
         //读锁验证成功后执行计算，即读的时候没有发生写
-        return Math.sqrt(currentX *currentX + currentY *currentY);
+        return Math.sqrt(currentX * currentX + currentY * currentY);
     }
 
     //读锁升级为写锁

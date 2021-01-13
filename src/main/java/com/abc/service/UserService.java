@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  **/
 public interface UserService {
 
-    void save(Long id,String name,int age);
+    void save(Long id, String name, int age);
 }

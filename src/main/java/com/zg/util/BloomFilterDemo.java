@@ -21,11 +21,11 @@ public class BloomFilterDemo {
         //fpp期望误判率，比如1E-7（千万分之一）
         //Strategy 策略，默认选取64位哈希映射函数，BloomFilterStrategies.MURMUR128_MITZ_64
         BloomFilter<CharSequence> bloomFilter = BloomFilter.create(Funnels.stringFunnel(Charsets.UTF_8),
-                200000,1E-7);
+                200000, 1E-7);
 
         bloomFilter.put("mads");
 
         boolean mads = bloomFilter.mightContain("mads1");
-        System.out.println("过滤器验证结果："+mads);
+        System.out.println("过滤器验证结果：" + mads);
     }
 }

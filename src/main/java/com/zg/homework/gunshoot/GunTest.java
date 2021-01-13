@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 public class GunTest {
 
     //枪的对象
-   private static Gun gun = new Gun();
+    private static Gun gun = new Gun();
     //获取一个随机数生成器
-    private static ThreadLocalRandom random =  ThreadLocalRandom.current();
+    private static ThreadLocalRandom random = ThreadLocalRandom.current();
 
 
     /*****
@@ -21,7 +21,7 @@ public class GunTest {
         @Override
         public void run() {
             try {
-                while (!Thread.currentThread().isInterrupted()){
+                while (!Thread.currentThread().isInterrupted()) {
                     gun.shoot();
 
                     TimeUnit.MILLISECONDS.sleep(random.nextInt(100, 300));
@@ -39,7 +39,7 @@ public class GunTest {
         @Override
         public void run() {
             try {
-                while (!Thread.currentThread().isInterrupted()){
+                while (!Thread.currentThread().isInterrupted()) {
                     gun.pressIn();
 
                     TimeUnit.MILLISECONDS.sleep(random.nextInt(100, 200));
@@ -52,7 +52,7 @@ public class GunTest {
 
     public static void main(String[] args) {
 
-        for(int i=0;i<5;i++){
+        for (int i = 0; i < 5; i++) {
             new pressInThread().start();
             new shootThread().start();
         }

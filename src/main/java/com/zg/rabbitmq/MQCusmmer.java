@@ -16,7 +16,7 @@ public class MQCusmmer {
 
     @RabbitHandler
     public void getMsg(String msg) {
-        System.out.println("收到消息00："+msg);
+        System.out.println("收到消息00：" + msg);
     }
 
 }

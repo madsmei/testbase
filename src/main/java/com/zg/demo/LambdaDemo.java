@@ -9,32 +9,32 @@ import java.util.List;
 public class LambdaDemo {
 
     /*定义挑选圆的行为接口*/
-    interface ChoiceCircle{
+    interface ChoiceCircle {
         boolean getCircle(Circle circle);
     }
 
     /*根据条件挑选出圆的方法*/
     public static List<Circle> getCircleByChoice(List<Circle> circles,
-                                                 ChoiceCircle choice){
+                                                 ChoiceCircle choice) {
         List<Circle> circleList = new ArrayList<>();
-        for(Circle circle :circles){
-            if(choice.getCircle(circle)){
+        for (Circle circle : circles) {
+            if (choice.getCircle(circle)) {
                 circleList.add(circle);
             }
         }
         return circleList;
     }
 
-    public static void service(){
+    public static void service() {
         List<Circle> src = new ArrayList<>();/*待处理的圆的集合*/
-        List<Circle> radiusTwos =  getCircleByChoice(src, new ChoiceCircle() {
+        List<Circle> radiusTwos = getCircleByChoice(src, new ChoiceCircle() {
             @Override
             public boolean getCircle(Circle circle) {
-                return circle.getRadius()==2;
+                return circle.getRadius() == 2;
             }
         });
 
-        List<Circle> reds =  getCircleByChoice(src, new ChoiceCircle() {
+        List<Circle> reds = getCircleByChoice(src, new ChoiceCircle() {
             @Override
             public boolean getCircle(Circle circle) {
                 return "Red".equals(circle.getColor());
@@ -42,19 +42,19 @@ public class LambdaDemo {
         });
 
         List<Circle> radiusTwos2 = getCircleByChoice(src,
-                (Circle circle) -> circle.getRadius()==2);
+                (Circle circle) -> circle.getRadius() == 2);
 
         List<Circle> reds2 = getCircleByChoice(src
-                ,(Circle circle) -> "Red".equals(circle.getColor()));
+                , (Circle circle) -> "Red".equals(circle.getColor()));
 
 
         /*所以可以把Lambda表达式看成匿名内部类的一个简洁写法
-        * 在语法上，Lambda表达式包含三个部分:
-        * 参数列表，箭头，主体，比如：
-        *  (parameters) -> expression
-        *  或
-        *  (parameters) -> ｛statements;｝
-        *  */
+         * 在语法上，Lambda表达式包含三个部分:
+         * 参数列表，箭头，主体，比如：
+         *  (parameters) -> expression
+         *  或
+         *  (parameters) -> ｛statements;｝
+         *  */
 
         /*Lambda表达式用在函数式接口上，
         所谓函数式接口，是只定义了一个抽象方法的接口（Interface），
@@ -72,8 +72,6 @@ public class LambdaDemo {
         * */
 
     }
-
-
 
 
 }

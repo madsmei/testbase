@@ -23,22 +23,22 @@ public class JDK8OptionalDemo {
         Optional<Persion> optiona = Optional.of(persion);
 
         //获取 optional 的值  调用 get()方法 如果 为null 则抛出异常
-        System.out.println("----1.--"+optiona.get());
+        System.out.println("----1.--" + optiona.get());
 
         //检测 optional的值是否为空 如果 为空 则 false
-        System.out.println("---2.---"+optiona.isPresent());
+        System.out.println("---2.---" + optiona.isPresent());
 
         //optional 可以根据  ifPresent 来对 值T  进行 自身的处理
-        optiona.ifPresent(p->p.setAge(20));
-        System.out.println("---3.--"+optiona.get().getAge());
+        optiona.ifPresent(p -> p.setAge(20));
+        System.out.println("---3.--" + optiona.get().getAge());
 
         //检测一个用户的名称是否 满足 特定条件的时候 ，optional 的filter 方法,如果不满足。则会跑出异常
         Optional<Persion> optionalPersion = optiona.filter(p -> p.getAge() == 20);
-        System.out.println("----4.--"+optionalPersion.get().getAdress());
+        System.out.println("----4.--" + optionalPersion.get().getAdress());
 
         //Optional 对象中map的使用：返回 User对象的 name属性
         Optional<String> map_name = optiona.map(p -> p.getName());
-        System.out.println("--5.--"+map_name.get());
+        System.out.println("--5.--" + map_name.get());
 
         //
         Persion persion1 = optiona.orElse(new Persion("xiaomi", 20, "华南一草屋"));
@@ -77,18 +77,23 @@ public class JDK8OptionalDemo {
         public String getName() {
             return name;
         }
+
         public void setName(String name) {
             this.name = name;
         }
+
         public int getAge() {
             return age;
         }
+
         public void setAge(int age) {
             this.age = age;
         }
+
         public String getAdress() {
             return adress;
         }
+
         public void setAdress(String adress) {
             this.adress = adress;
         }

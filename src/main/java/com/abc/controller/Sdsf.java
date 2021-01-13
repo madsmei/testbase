@@ -13,19 +13,20 @@ import org.springframework.stereotype.Service;
  * @Author Mads
  **/
 @Service
-public class Sdsf implements Adsfd,ApplicationContextAware {
+public class Sdsf implements Adsfd, ApplicationContextAware {
 
     private ApplicationContext context;
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;
     }
 
     @Override
-    public void aaaaaa(){
+    public void aaaaaa() {
         TestEntity bean = context.getBean(TestEntity.class);
 
-        System.out.println("--:"+bean.toString());
+        System.out.println("--:" + bean.toString());
 
         bean.setName("aaaaa");
         bean.setAdress("vvvv");
@@ -35,7 +36,7 @@ public class Sdsf implements Adsfd,ApplicationContextAware {
     public void bbbb() {
         TestEntity bean = context.getBean(TestEntity.class);
 
-        System.out.println("--:"+bean.toString());
+        System.out.println("--:" + bean.toString());
 
         bean.setName("bbbb");
         bean.setAdress("bbbb");

@@ -8,7 +8,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 /**
  * 类说明：序列化的Handler
  */
-public class KryoEncoder  extends MessageToByteEncoder<MyMessage> {
+public class KryoEncoder extends MessageToByteEncoder<MyMessage> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, MyMessage message,

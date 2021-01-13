@@ -3,14 +3,14 @@ package com.zg.thread.pool;
 import java.util.concurrent.*;
 
 /**
- *类说明：扩展线程池的使用范例
+ * 类说明：扩展线程池的使用范例
  */
 public class ThreadPoolExt {
     static class Worker implements Runnable {
         private String taskName;
         private ThreadLocalRandom r = ThreadLocalRandom.current();
 
-        public Worker(String taskName){
+        public Worker(String taskName) {
             this.taskName = taskName;
         }
 
@@ -19,11 +19,11 @@ public class ThreadPoolExt {
         }
 
         @Override
-        public void run(){
+        public void run() {
             System.out.println(Thread.currentThread().getName()
-            		+" process the task : " + taskName);
+                    + " process the task : " + taskName);
             try {
-                TimeUnit.MILLISECONDS.sleep(r.nextInt(10,100));
+                TimeUnit.MILLISECONDS.sleep(r.nextInt(10, 100));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -35,15 +35,15 @@ public class ThreadPoolExt {
 
         ExecutorService threadPool = new ThreadPoolExecutor(2, 4, 3,
                 TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10),
-                new ThreadPoolExecutor.DiscardOldestPolicy()){
+                new ThreadPoolExecutor.DiscardOldestPolicy()) {
             @Override
             protected void beforeExecute(Thread t, Runnable r) {
-                System.out.println("准备执行..."+((Worker)r).getName());
+                System.out.println("准备执行..." + ((Worker) r).getName());
             }
 
             @Override
             protected void afterExecute(Runnable r, Throwable t) {
-                System.out.println("执行完成..."+((Worker)r).getName());
+                System.out.println("执行完成..." + ((Worker) r).getName());
             }
 
             @Override

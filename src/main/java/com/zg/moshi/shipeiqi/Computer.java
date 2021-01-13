@@ -2,7 +2,7 @@ package com.zg.moshi.shipeiqi;
 
 /**
  * @Description: 结构型 模式
- *
+ * <p>
  * 将一个类的接口转换成客户希望的另外一个接口。适配器模式 使的原本由于接口不兼容不能一起工作的类又可以在一起工作了
  * @Date 2020/4/20
  * @Version V1.0

@@ -13,12 +13,12 @@ public class UnSafePublish {
     }
 
     public static void main(String[] args) {
-		UnSafePublish unSafePublish = new UnSafePublish();
+        UnSafePublish unSafePublish = new UnSafePublish();
         UserVo user = unSafePublish.getUser();
-		System.out.println(user);
+        System.out.println(user);
         user.setAge(26);
-		System.out.println(user);
-		System.out.println(unSafePublish.getUser());
+        System.out.println(user);
+        System.out.println(unSafePublish.getUser());
 
-	}
+    }
 }

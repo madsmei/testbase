@@ -1,6 +1,6 @@
 package com.abc.ratelimit;
 
-import com.abc.ratelimit.redis.MadsRedislimit;
+import com.abc.ratelimit.redis.MadsRedisLimit;
 
 /**
  * @Description: 模拟 令牌桶的  业务service
@@ -10,8 +10,8 @@ import com.abc.ratelimit.redis.MadsRedislimit;
  **/
 public class RateTestServiceImpl {
 
-//    @MadsRatelimit(limit = 30,timeout = 30,fallback = "getErrorMsg")
-    @MadsRedislimit(limit = 10,fallback = "getErrorMsg")
+    //    @MadsRatelimit(limit = 30,timeout = 30,fallback = "getErrorMsg")
+    @MadsRedisLimit(limit = 10, fallback = "getErrorMsg")
     public String getName() {
         return "My name is Mads";
     }

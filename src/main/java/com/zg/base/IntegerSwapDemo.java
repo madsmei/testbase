@@ -23,9 +23,9 @@ public class IntegerSwapDemo {
 
         Integer b = 2;
 
-        swap(a,b);
+        swap(a, b);
 
-        System.out.println("a-->"+a+"-->b->"+b);
+        System.out.println("a-->" + a + "-->b->" + b);
     }
 
     /*****
@@ -33,7 +33,7 @@ public class IntegerSwapDemo {
      * @param a
      * @param b
      */
-    public static void swap(Integer a,Integer b) throws NoSuchFieldException, IllegalAccessException {
+    public static void swap(Integer a, Integer b) throws NoSuchFieldException, IllegalAccessException {
 
         //这里不能使用封装类。
         int temp = a;

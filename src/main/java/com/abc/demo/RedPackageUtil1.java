@@ -92,6 +92,7 @@ public class RedPackageUtil1 {
         return list;
 
     }
+
     public static void main(String[] args) {
 //        List<Integer> accountList = divideRedPackage(50, 1000);
         List<Integer> accountList = divide(50, 7);

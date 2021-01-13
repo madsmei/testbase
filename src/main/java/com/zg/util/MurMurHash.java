@@ -6,9 +6,9 @@ import java.nio.ByteOrder;
 
 /**
  * @Description: MurMurHash算法，是非加密HASH算法，性能很高，
- *      *  比传统的CRC32,MD5，SHA-1（这两个算法都是加密HASH算法，复杂度本身就很高，带来的性能上的损害也不可避免）
- *      *  等HASH算法要快很多，而且据说这个算法的碰撞率很低.
- *      *  http://murmurhash.googlepages.com/
+ * *  比传统的CRC32,MD5，SHA-1（这两个算法都是加密HASH算法，复杂度本身就很高，带来的性能上的损害也不可避免）
+ * *  等HASH算法要快很多，而且据说这个算法的碰撞率很低.
+ * *  http://murmurhash.googlepages.com/
  * @Date 2020/4/5
  * @Version V1.0
  * @Author Mads
@@ -19,7 +19,7 @@ public class MurMurHash {
         System.out.println(hash("madsfsadg"));
     }
 
-    public static BigDecimal hash(String key){
+    public static BigDecimal hash(String key) {
         return readUnsignedLong(getHash(key));
     }
 
@@ -27,7 +27,7 @@ public class MurMurHash {
      * 核心算法逻辑
      *
      * @param key
-     * @return  20位长整型
+     * @return 20位长整型
      */
     private static Long getHash(String key) {
 
@@ -70,9 +70,10 @@ public class MurMurHash {
 
         buf.order(byteOrder);
 
-        System.out.println("原始hash:"+h);
+        System.out.println("原始hash:" + h);
         return h;
     }
+
     /**
      * Long转换成无符号长整型（C中数据类型）
      */

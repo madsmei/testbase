@@ -12,6 +12,7 @@ public class Adapter implements NetToUsb {
      * 使用委托来完成适配
      */
     private WangXian twoPower;
+
     public Adapter(WangXian twoPower) {
         this.twoPower = twoPower;
     }
@@ -19,6 +20,7 @@ public class Adapter implements NetToUsb {
     @Override
     public void powerByThree() {
         System.out.println("借助组合适配器转化二项电");
-        twoPower.powerByTwo();;
+        twoPower.powerByTwo();
+        ;
     }
 }

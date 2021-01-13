@@ -54,18 +54,22 @@ public class Food {
             this.name = name;
             return this;
         }
+
         public FoodBuilder reliang(String reliang) {
             this.reliang = reliang;
             return this;
         }
+
         public FoodBuilder zhongliang(String zhongliang) {
             this.zhongliang = zhongliang;
             return this;
         }
+
         public FoodBuilder color(String color) {
             this.color = color;
             return this;
         }
+
         public FoodBuilder xingzhuang(String xingzhuang) {
             this.xingzhuang = xingzhuang;
             return this;

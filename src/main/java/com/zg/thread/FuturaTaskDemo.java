@@ -9,12 +9,12 @@ import java.util.concurrent.*;
  * 浪费计算机资源，get()方法时阻塞的，
  * @param <V>
  */
-public class FuturaTaskDemo<V> implements  Runnable, Future<V> {
+public class FuturaTaskDemo<V> implements Runnable, Future<V> {
 
     private Callable<V> callable;//封装业务逻辑
     private V result = null;//执行结果
 
-    public FuturaTaskDemo(Callable<V> callable){
+    public FuturaTaskDemo(Callable<V> callable) {
         this.callable = callable;
     }
 
@@ -28,11 +28,11 @@ public class FuturaTaskDemo<V> implements  Runnable, Future<V> {
         V temp = null;
         try {
             //调用执行业务逻辑
-           temp = callable.call();
-           synchronized (this){
-               result = temp;
-               this.notifyAll();
-           }
+            temp = callable.call();
+            synchronized (this) {
+                result = temp;
+                this.notifyAll();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,12 +45,12 @@ public class FuturaTaskDemo<V> implements  Runnable, Future<V> {
     @Override
     public V get() throws InterruptedException, ExecutionException {
 
-        if(null != result){
+        if (null != result) {
             return result;
         }
-        System.out.println("result--"+result);
+        System.out.println("result--" + result);
 
-        synchronized (this){
+        synchronized (this) {
             this.wait();
         }
         return result;
@@ -60,6 +60,7 @@ public class FuturaTaskDemo<V> implements  Runnable, Future<V> {
     public V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
         return null;
     }
+
     @Override
     public boolean cancel(boolean mayInterruptIfRunning) {
         return false;
@@ -74,8 +75,6 @@ public class FuturaTaskDemo<V> implements  Runnable, Future<V> {
     public boolean isDone() {
         return false;
     }
-
-
 
 
 }

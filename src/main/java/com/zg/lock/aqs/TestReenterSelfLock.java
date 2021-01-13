@@ -5,19 +5,19 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- *类说明：
+ * 类说明：
  */
 public class TestReenterSelfLock {
 
     static final Lock lock = new ReentrantLock();
 
-    public void reenter(int x){
+    public void reenter(int x) {
         lock.lock();
         try {
-            System.out.println(Thread.currentThread().getName()+":递归层级:"+x);
+            System.out.println(Thread.currentThread().getName() + ":递归层级:" + x);
             int y = x - 1;
-            if (y==0) return;
-            else{
+            if (y == 0) return;
+            else {
                 reenter(y);
             }
         } finally {
@@ -28,7 +28,7 @@ public class TestReenterSelfLock {
 
     public void test() {
         class Worker extends Thread {
-			public void run() {
+            public void run() {
                 System.out.println(Thread.currentThread().getName());
                 TimeUnit.MILLISECONDS.toSeconds(100);
 

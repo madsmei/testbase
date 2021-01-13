@@ -6,11 +6,12 @@ package com.zg.moshi.zhuangshi;
  * @Version V1.0
  * @Author Mads
  **/
-public abstract class MadsHouseDecorate  implements MadsHouse{
+public abstract class MadsHouseDecorate implements MadsHouse {
 
     private MadsHouse house;
 
-    private MadsHouseDecorate() {}
+    private MadsHouseDecorate() {
+    }
 
     public MadsHouseDecorate(MadsHouse house) {
         this.house = house;

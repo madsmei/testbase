@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class ALiMapForEachDemo {
     public static void main(String[] args) {
-        Map<String,String> map_test = new HashMap<>();
+        Map<String, String> map_test = new HashMap<>();
         map_test.put("m1", "m1value");
         map_test.put("m2", "m2value");
 
@@ -27,7 +27,7 @@ public class ALiMapForEachDemo {
          * FIXME //表示此代码是错误的不能正常执行。需要重写逻辑
          */
         for (Map.Entry entry : map_test.entrySet()) {
-            System.out.println(entry.getKey() + "  " +entry.getValue());
+            System.out.println(entry.getKey() + "  " + entry.getValue());
         }
 
         /****
@@ -35,8 +35,8 @@ public class ALiMapForEachDemo {
          *  Set 等集合中也都加入了 forEach的方法
          *
          */
-        map_test.forEach((key,value) -> {
-            System.out.println("1.8遍历 key:"+key+" value:"+value);
+        map_test.forEach((key, value) -> {
+            System.out.println("1.8遍历 key:" + key + " value:" + value);
         });
 
         //JUC下的处理随机数的类
@@ -44,13 +44,12 @@ public class ALiMapForEachDemo {
 
 
         //try-with-resource  优雅的关闭资源
-        try(FileInputStream inputStream = new FileInputStream(new File("test"))) {
+        try (FileInputStream inputStream = new FileInputStream(new File("test"))) {
 
-        }catch (IOException e) {
-        }finally {
+        } catch (IOException e) {
+        } finally {
 
         }
-
 
 
     }
